@@ -30,25 +30,14 @@ def merge_tsv_and_fasta(tsv_df, seq_dict):
     return tsv_df
 
 def main():
-    # load lengths 201-400
-    df_201_400 = load_uniprot_tsv("data/uniprot_201-400.tsv")
-    seq_dict_201_400 = load_uniprot_fasta("data/uniprot_201-400.fasta")
-    merged_201_400 = merge_tsv_and_fasta(df_201_400, seq_dict_201_400)
-    print(f"Merged 201-400: {merged_201_400.shape[0]} rows")
+    df = load_uniprot_tsv("Data/uniprotkb_data.tsv")
+    seq_dict = load_uniprot_fasta("Data/uniprotkb_data.fasta")
+    merged = merge_tsv_and_fasta(df, seq_dict)
+    print(f"Merged: {merged.shape[0]} rows")
 
-    # load lengths 401-600
-    df_401_600 = load_uniprot_tsv("data/uniprot_401-600.tsv")
-    seq_dict_401_600 = load_uniprot_fasta("data/uniprot_401-600.fasta")
-    merged_401_600 = merge_tsv_and_fasta(df_401_600, seq_dict_401_600)
-    print(f"Merged 401-600: {merged_401_600.shape[0]} rows")
-
-    # concatenate both
-    combined_df = pd.concat([merged_201_400, merged_401_600], ignore_index=True)
-    print("Total combined rows:", combined_df.shape[0])
-
-    # save final combined DataFrame
-    combined_df.to_csv("data/combined_uniprot_data.csv", index=False)
-    print("Wrote data/combined_uniprot_data.csv")
+    # save final DataFrame
+    df.to_csv("Data/dataframe.csv", index=False)
+    print("Wrote Data/dataframe.csv")
 
 if __name__ == "__main__":
     main()

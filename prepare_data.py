@@ -7,13 +7,13 @@ def parse_go_terms(go_string):
     terms = [term.strip() for term in go_string.split(';') if term.strip()]
     return terms
 
-# retains only the GO terms from terms_list that appear in the top_terms set.
+# retains only the GO terms from terms_list that appear in the top_terms set
 def filter_top_50(terms_list, top_terms):
     return [t for t in terms_list if t in top_terms]
 
 def main():
-    # read the merged UniProt .csv file
-    df = pd.read_csv("data/combined_uniprot_data.csv")
+    # read the parsed UniProt .csv file
+    df = pd.read_csv("data/dataframe.csv")
     print("Original shape:", df.shape)
 
     # filter out rows that have no GO (molecular function) annotation
@@ -55,8 +55,8 @@ def main():
     print("Number of unique terms used =", len(mlb.classes_))
 
     # save the filtered dataset
-    df_filtered.to_csv("data/filtered_data.csv", index=False)
-    print("Saved filtered_data.csv")
+    df_filtered.to_csv("data/filtered_parsed_data.csv", index=False)
+    print("Saved filtered_parsed_data.csv")
 
 if __name__ == "__main__":
     main()
