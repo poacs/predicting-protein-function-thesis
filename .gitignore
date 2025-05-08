@@ -1,0 +1,4 @@
+# Ignore model and embedding files (too large to host)
+protein_transformer_model_3_layers.pt
+protein_transformer_model_4layer_reg.pt
+esm2_segmented_embeddings.npy
